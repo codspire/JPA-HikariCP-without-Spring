@@ -13,8 +13,9 @@
         <HikariCP.version>4.0.1</HikariCP.version>
         <h2.version>1.4.199</h2.version>
         <hibernate.version>5.4.27.Final</hibernate.version>
+        <lombok.version>1.18.16</lombok.version>
         <junit.version>4.12</junit.version>
-        <log4j2.version>2.7</log4j2.version>
+        <log4j2.version>2.14.0</log4j2.version>
         <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -53,22 +54,15 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>${lombok.version}</version>
         </dependency>
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb-api.version}</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
