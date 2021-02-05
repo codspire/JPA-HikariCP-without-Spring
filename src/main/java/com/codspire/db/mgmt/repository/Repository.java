@@ -59,9 +59,9 @@ public abstract class Repository<T, K> {
 		map.put(USE_STRUCTURED_CACHE, false);
 		map.put(STATEMENT_BATCH_SIZE, 20);
 
-		map.put("hibernate.hikari.minimumIdle", 5);
-		map.put("hibernate.hikari.maximumPoolSize", 15);
-		map.put("hibernate.hikari.idleTimeout", 30000);
+		map.put("hibernate.hikari.minimumIdle", "5");
+		map.put("hibernate.hikari.maximumPoolSize", "15");
+		map.put("hibernate.hikari.idleTimeout", "30000");
 
 		return map;
 	}

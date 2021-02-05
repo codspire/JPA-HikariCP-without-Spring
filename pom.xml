@@ -10,8 +10,9 @@
 
     <properties>
         <java.version>11</java.version>
-        <h2.version>1.4.193</h2.version>
-        <hibernate.version>5.2.6.Final</hibernate.version>
+        <HikariCP.version>4.0.1</HikariCP.version>
+        <h2.version>1.4.199</h2.version>
+        <hibernate.version>5.4.27.Final</hibernate.version>
         <junit.version>4.12</junit.version>
         <log4j2.version>2.7</log4j2.version>
         <jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
@@ -21,6 +22,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${HikariCP.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-hikaricp</artifactId>
