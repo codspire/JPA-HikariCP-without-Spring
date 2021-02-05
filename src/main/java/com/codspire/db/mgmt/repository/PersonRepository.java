@@ -6,10 +6,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class PersonRepository extends Repository<Person, Long> {
-
-//	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.codspire.db.mgmt");
-//	private EntityManager em;
-
 	public PersonRepository() {
 		em = emf.createEntityManager();
 	}

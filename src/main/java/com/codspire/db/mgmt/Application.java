@@ -38,10 +38,10 @@ public class Application {
 			// Hibernate generates id of 1
 			Optional<Person> p = repository.findById(1L);
 
-			p.ifPresent(consumer -> {
-				log.info("Person from database: {}", consumer);
-				consumer.setModifiedDate(LocalDateTime.now());
-				consumer.setMiddleName("Reeve");
+			p.ifPresent(elon -> {
+				log.info("Person from database: {}", elon);
+				elon.setModifiedDate(LocalDateTime.now());
+				elon.setMiddleName("Reeve");
 			});
 			// Update person record
 			repository.save(p.get());
@@ -76,5 +76,4 @@ public class Application {
 			log.info("Shutdown complete");
 		}
 	}
-
 }

@@ -1,12 +1,13 @@
-# spring-boot-liquibase
-Manage database schema using an independent Spring boot Liquibase App
+Sometime you don't all the goodies of Spring and go alone. This is an example of implementing JPA using high Hikari performance connection without Spring.
 
-Apply DB Migration
+Inspired by
+- https://github.com/juliuskrah/java-crud/tree/hikari-hibernate-jpa
+- https://stackoverflow.com/questions/1989672/create-jpa-entitymanager-without-persistence-xml-configuration-file
 
-```mvn clean package```
+This demo programmatically build JPA persistence configuration, so that `persistence.xml` is not needed.
 
-```java -jar -Dspring.profiles.active=dev  target/spring-boot-liquibase-0.0.1-SNAPSHOT.jar```
+If you want to use `persistence.xml`, just rename `src/main/resources/META-INF/persistence.xml.not_used` 
 
-or
+and replace `EntityManagerFactory emf = new HibernatePersistenceProvider().createContainerEntityManagerFactory(archiverPersistenceUnitInfo(), config());`
 
-```mvn spring-boot:run  -Dspring.profiles.active=dev```
+with `EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.codspire.db.mgmt");`
