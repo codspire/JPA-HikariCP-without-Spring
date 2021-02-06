@@ -1,16 +1,15 @@
 package com.codspire.db.mgmt;
 
-
 import com.codspire.db.mgmt.entity.Person;
 import com.codspire.db.mgmt.repository.PersonRepository;
 import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.ZoneId;
 import java.util.Optional;
 
 public class Application {
@@ -28,7 +27,7 @@ public class Application {
 			Person person = new Person();
 			person.setFirstName("Elon");
 			person.setLastName("Musk");
-			person.setCreatedDate(LocalDateTime.now());
+			person.setCreatedDate(LocalDateTime.now().atZone(ZoneId.systemDefault()));
 			person.setDateOfBirth(LocalDate.of(1971, Month.JUNE, 28));
 
 			repository = new PersonRepository();
@@ -40,7 +39,7 @@ public class Application {
 
 			p.ifPresent(elon -> {
 				log.info("Person from database: {}", elon);
-				elon.setModifiedDate(LocalDateTime.now());
+				elon.setModifiedDate(LocalDateTime.now().atZone(ZoneId.systemDefault()));
 				elon.setMiddleName("Reeve");
 			});
 			// Update person record
@@ -53,16 +52,15 @@ public class Application {
 			p.ifPresent(consumer -> {
 				log.info("Person updated: {}", consumer);
 			});
+
 			// Delete person
 			repository.delete(p.get());
-
-			p = Optional.empty();
 
 			p = repository.findById(1L);
 
 			log.info("Does person exist: {}", p.isPresent());
-
-		} catch (SQLException e) {
+			System.out.println("Does person exist: " + p.isPresent());
+		} catch (Exception e) {
 			log.error("Error occurred in initialization: " + e.getMessage());
 			e.printStackTrace();
 		} finally {

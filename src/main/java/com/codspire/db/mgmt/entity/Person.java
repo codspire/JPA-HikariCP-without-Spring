@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Data
@@ -30,7 +30,7 @@ public class Person implements Serializable {
 
 	private LocalDate dateOfBirth;
 
-	private LocalDateTime createdDate;
+	private ZonedDateTime createdDate;
 
-	private LocalDateTime modifiedDate;
+	private ZonedDateTime modifiedDate;
 }

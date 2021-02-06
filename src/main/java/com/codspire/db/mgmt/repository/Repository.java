@@ -2,7 +2,6 @@ package com.codspire.db.mgmt.repository;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
@@ -17,8 +16,13 @@ import java.util.*;
 
 import static org.hibernate.cfg.AvailableSettings.*;
 
+/**
+ * https://docs.jboss.org/hibernate/core/3.3/reference/en/html/transactions.html
+ *
+ * @param <T>
+ * @param <K>
+ */
 public abstract class Repository<T, K> {
-
 	protected EntityManagerFactory emf = new HibernatePersistenceProvider().createContainerEntityManagerFactory(archiverPersistenceUnitInfo(), config());
 
 	/*
@@ -28,8 +32,6 @@ public abstract class Repository<T, K> {
 	 */
 
 	private static final String PERSISTENCE_UNIT_NAME = "com.codspire.db.mgmt";
-
-	protected EntityManager em;
 
 	abstract Optional<T> save(T obj);
 
@@ -49,15 +51,17 @@ public abstract class Repository<T, K> {
 		map.put(JPA_JDBC_USER, "sa");
 		map.put(JPA_JDBC_PASSWORD, "");
 		map.put(DIALECT, org.hibernate.dialect.H2Dialect.class);
+//		map.put(DIALECT, "org.hibernate.dialect.H2Dialect");
 		map.put(HBM2DDL_AUTO, "create");
-		map.put(SHOW_SQL, true);
-		map.put(QUERY_STARTUP_CHECKING, false);
-		map.put(GENERATE_STATISTICS, false);
-		map.put(USE_REFLECTION_OPTIMIZER, false);
-		map.put(USE_SECOND_LEVEL_CACHE, false);
-		map.put(USE_QUERY_CACHE, false);
-		map.put(USE_STRUCTURED_CACHE, false);
-		map.put(STATEMENT_BATCH_SIZE, 20);
+		map.put(SHOW_SQL, "true");
+		map.put(QUERY_STARTUP_CHECKING, "false");
+		map.put(GENERATE_STATISTICS, "false");
+		map.put(USE_REFLECTION_OPTIMIZER, "false");
+		map.put(USE_SECOND_LEVEL_CACHE, "false");
+		map.put(USE_QUERY_CACHE, "false");
+		map.put(USE_STRUCTURED_CACHE, "false");
+		map.put(STATEMENT_BATCH_SIZE, "20");
+		map.put(AUTOCOMMIT, "false");
 
 		map.put("hibernate.hikari.minimumIdle", "5");
 		map.put("hibernate.hikari.maximumPoolSize", "15");
